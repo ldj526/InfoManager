@@ -1,0 +1,84 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(73, 198, 236);
+    padding: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#add-contact-btn {
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: white;
+    
+}
+
+#contact-list, #contact-header {
+    list-style: none;
+    padding: 0;
+    margin: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #dadada;
+}
+
+.contact-actions {
+    flex-shrink: 0;
+    display: flex;
+    visibility: hidden;
+    gap: 0.5rem;
+}
+
+.contact-item:hover .contact-actions {
+    visibility: visible;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: minmax(100px, 150px) minmax(150px, 200px) minmax(200px, 250px);
+    align-items: center;
+    text-align: left;
+}
+
+.contact-name, 
+.contact-phone, 
+.contact-email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-btn {
+    background-color: rgb(114, 155, 230);
+    color: white;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+}
