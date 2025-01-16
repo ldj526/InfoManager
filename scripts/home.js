@@ -17,3 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 });
+
+// 클릭 시 contact-form.html로 이동동
+document.getElementById('add-contact-btn').addEventListener('click', () => {
+    window.location.href = 'contact-form.html';
+});

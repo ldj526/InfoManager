@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoManager</title>
+    <script src="scripts/contact-form.js"></script>
+    <link rel="stylesheet" href="styles/contact-form.css">
+</head>
+
+<body>
+    <header>
+        <h1>연락처 추가</h1>
+    </header>
+    <main>
+        <h2>연락처 정보</h2>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" required placeholder="이름">
+            </div>
+            <div class="form-group">
+                <label for="birthdate">생년월일</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">전화번호</label>
+                <div class="phone-group">
+                    <select id="phone-prefix" name="phone-prefix" required>
+                        <option value="010">010</option>
+                        <option value="02">02</option>
+                        <option value="032">032</option>
+                        <option value="042">042</option>
+                        <option value="051">051</option>
+                        <option value="052">052</option>
+                        <option value="053">053</option>
+                        <option value="062">062</option>
+                        <option value="064">064</option>
+                        <option value="031">031</option>
+                        <option value="033">033</option>
+                        <option value="041">041</option>
+                        <option value="043">043</option>
+                        <option value="054">054</option>
+                        <option value="055">055</option>
+                        <option value="061">061</option>
+                        <option value="063">063</option>
+                        <option value="070">070</option>
+                    </select>
+                    <input type="text" id="phone-middle" name="phone-middle" maxlength="4" pattern="\d{3,4}" required
+                        placeholder="1234">
+                    <input type="text" id="phone-last" name="phone-last" maxlength="4" pattern="\d{4}" required
+                        placeholder="5678">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <div class="email-group">
+                    <input type="text" id="email-id" name="email-id" required placeholder="example">
+                    <span>@</span>
+                    <input type="text" id="email-domain-field" name="email-domain-field" placeholder="도메인 입력" readonly>
+                    <select id="email-domain" name="email-domain" onchange="handleEmailDomainChange()">
+                        <option value="naver.com">naver.com</option>
+                        <option value="google.com">google.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="custom">직접 입력</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="group">그룹</label>
+                <div class="group-group">
+                    <select id="group-dropdown" name="group">
+                        <option value="family">가족</option>
+                        <option value="friends">친구</option>
+                        <option value="work">직장</option>
+                    </select>
+                    <button id="add-group-btn">그룹 추가</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="notes">메모</label>
+                <textarea id="notes" name="notes" placeholder="메모를 입력하세요..." rows="4"></textarea>
+            </div>
+            <div class="save-actions">
+                <button class="save-btn">저장</button>
+                <button class="cancel-btn">취소</button>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>
