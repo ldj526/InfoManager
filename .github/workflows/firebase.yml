@@ -16,22 +16,16 @@ jobs:
     - name: Install Firebase CLI
       run: curl -sL https://firebase.tools | bash
 
-    - name: Set GOOGLE_APPLICATION_CREDENTIALS
-      run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > $HOME/firebase-service-account-key.json
-      env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    # 디버깅: FIREBASE_TOKEN 확인
+    - name: Debug Firebase Token
+      run: |
+        if [ -z "${{ secrets.FIREBASE_TOKEN }}" ]; then
+          echo "FIREBASE_TOKEN is not set or empty!"
+          exit 1
+        else
+          echo "FIREBASE_TOKEN is set."
+        fi
 
-    - name: Debug Secrets
-      run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" | jq
-      env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
-    - name: Debug Environment Variable
-      run: cat $HOME/firebase-service-account-key.json
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: $HOME/firebase-service-account-key.json
-
+    # Firebase Hosting 배포
     - name: Deploy to Firebase Hosting
-      run: firebase deploy --only hosting --project "infomanager-cfd4c" --debug
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: $HOME/firebase-service-account-key.json
+      run: firebase deploy --only hosting --project "infomanager-cfd4c" --token "${{ secrets.FIREBASE_TOKEN }}"
