@@ -1,0 +1,125 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../assets/background.jpg) no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    width: 70%;
+    max-width: 1000px;
+    height: 500px;
+    border-radius: 12px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    background: rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+}
+
+.container>div {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-box form {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-box button {
+    width: 60%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(114, 155, 230);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #347dca;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgb(114, 155, 230);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.signup-box {
+    background: rgb(114, 155, 230, 0.8);
+}
+
+.signup-box h2 {
+    font-size: 24px;
+    margin-bottom: 35px;
+    color: white;
+}
+
+.signup-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.signup-box button {
+    padding: 10px 20px;
+    background-color: rgb(114, 155, 230);
+    color: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-box button:hover {
+    background-color: #347dca;
+}

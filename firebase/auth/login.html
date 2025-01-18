@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 & 회원가입</title>
+    <link rel="stylesheet" href="../styles/auth/login.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="login-box">
+            <h2>환영합니다</h2>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="이메일" required>
+                <input type="password" id="password" placeholder="비밀번호" required>
+                <button type="submit">로그인</button>
+                <a href="#" class="forgot-password">비밀번호를 잊어버리셨나요?</a>
+            </form>
+        </div>
+
+        <div class="signup-box">
+            <h2>처음 오셨나요?</h2>
+            <button onclick="location.href='signup.html'">회원가입</button>
+        </div>
+    </div>
+</body>
+
+</html>
