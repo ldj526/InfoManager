@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../styles/auth/signup.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="signup-box">
+            <h2>회원가입</h2>
+            <form id="signup-form">
+                <input type="email" id="email" placeholder="이메일" required>
+                <input type="password" id="password" placeholder="비밀번호" required>
+                <input type="password" id="confirm-password" placeholder="비밀번호 확인" required>
+                <button type="submit">회원가입</button>
+            </form>
+            <div id="email-verification">
+                <h3>이메일 인증</h3>
+                <p>아래 버튼을 클릭하여 이메일 인증을 완료하세요.</p>
+                <button id="verify-email">인증 이메일 보내기</button>
+                <p id="verification-status"></p>
+            </div>
+            <a href="login.html" class="back-to-login">로그인 화면으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>
