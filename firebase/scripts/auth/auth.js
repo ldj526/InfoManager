@@ -1,5 +1,5 @@
 // Firebase SDK 가져오기
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 // Firebase 구성
@@ -17,10 +17,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 사용자 정보 로드
-export function getCurrentUser() {
-    return auth.currentUser;
-}
-
 // Firebase Auth 객체 내보내기
 export { auth };
+setLogLevel("debug");
