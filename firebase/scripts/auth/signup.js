@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let isPasswordValid = false;
     let isConfirmPasswordValid = false;
-    let isEmailVerified = false;
+    let isEmailValid = false;
 
     // 이메일 유효성 검사
     emailInput.addEventListener("input", async () => {
@@ -33,27 +33,31 @@ document.addEventListener("DOMContentLoaded", async () => {
             emailMessage.textContent = "유효하지 않은 이메일 형식입니다.";
             emailMessage.classList.remove("valid");
             emailMessage.classList.add("invalid");
+            isEmailValid = false;
             return;
         }
 
         try {
             // Firestore로 이메일 중복 확인
-            const methods = await checkEmailExists(email);
+            const isDuplicate = await checkEmailExists(email);
 
-            if (methods.length > 0) {
+            if (isDuplicate) {
                 emailMessage.textContent = "이미 사용 중인 이메일입니다.";
                 emailMessage.classList.remove("valid");
                 emailMessage.classList.add("invalid");
+                isEmailValid = false;
             } else {
                 emailMessage.textContent = "사용 가능한 이메일입니다.";
                 emailMessage.classList.remove("invalid");
                 emailMessage.classList.add("valid");
+                isEmailValid = true;
             }
         } catch (error) {
             console.error("Error checking email:", error.message);
             emailMessage.textContent = "이메일 확인 중 오류가 발생했습니다.";
             emailMessage.classList.remove("valid");
             emailMessage.classList.add("invalid");
+            isEmailValid = false;
         }
     });
 
@@ -73,10 +77,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             passwordMessage.classList.add("valid");
             isPasswordValid = true;
         }
+
+        validateConfirmPassword();
     })
 
     // 비밀번호 확인 검사
     confirmPasswordInput.addEventListener("input", () => {
+        validateConfirmPassword();
+    });
+
+    function validateConfirmPassword() {
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
 
@@ -91,9 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             confirmPasswordMessage.classList.add("valid");
             isConfirmPasswordValid = true;
         }
-    });
-
-
+    }
 
     // 회원가입 폼 제출
     signupButton.addEventListener("click", async (e) => {
@@ -101,6 +109,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value;
+
+        if (!isEmailValid) {
+            alert("유효한 이메일을 입력해주세요!");
+            return;
+        }
 
         if (!isPasswordValid || !isConfirmPasswordValid) {
             alert("유효한 비밀번호를 입력해주세요!");
@@ -120,17 +133,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                 createdAt: new Date()
             });
 
+            await setDoc(doc(db, "usersByEmail", email), {
+                userId: user.uid,
+                email: email,
+                createdAt: new Date()
+            });
+
             alert("회원가입이 완료되었습니다. 이메일 인증 후 로그인하세요.");
             window.location.href = "login.html";
         } catch (error) {
-            console.error("회원가입 중 오류류:", error.message);
+            console.error("회원가입 중 오류:", error.message);
             alert("회원가입 중 오류가 발생했습니다.");
         }
     });
 
     // 이메일 중복 확인
     async function checkEmailExists(email) {
-        const usersRef = collection(db, "users");
+        const usersRef = collection(db, "usersByEmail");
         const emailQuery = query(usersRef, where("email", "==", email));
 
         try {
@@ -138,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             return !querySnapshot.empty;
         } catch (error) {
             console.error("Firestore 이메일 확인 오류:", error.message);
-            return false;
+            throw error;
         }
     }
 })
