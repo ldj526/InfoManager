@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body,
 html {
     margin: 0;
@@ -23,7 +29,7 @@ html {
 .container {
     display: flex;
     width: 50%;
-    max-width: 300px;
+    max-width: 400px;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -51,22 +57,23 @@ html {
     gap: 20px;
 }
 
-.signup-box input {
+.signup-box input,
+.signup-box button {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    box-sizing: border-box;
+}
+
+.signup-box input {
+    border: 1px solid #ddd;
     background-color: #eee;
 }
 
 .signup-box button {
-    padding: 10px;
     background-color: rgb(114, 155, 230);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -87,39 +94,16 @@ html {
     text-decoration: underline;
 }
 
-#email-verification {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: rgba(114, 155, 230, 0.1);
-    text-align: center;
+.input-container p {
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    line-height: 1.2;
 }
 
-#email-verification h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-#email-verification button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#email-verification button:hover {
-    background-color: #0056b3;
-}
-
-#verification-status {
-    margin-top: 10px;
-    font-size: 14px;
+.input-container p.valid {
     color: green;
-    font-weight: bold;
+}
+
+.input-container p.invalid {
+    color: red;
 }
