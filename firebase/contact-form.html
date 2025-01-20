@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfoManager</title>
-    <script src="scripts/contact-form.js"></script>
+    <script src="scripts/contact-form.js" type="module"></script>
     <link rel="stylesheet" href="styles/contact-form.css">
 </head>
 
@@ -26,8 +26,9 @@
             </div>
             <div class="form-group">
                 <label for="phone">전화번호</label>
-                <div class="phone-group">
+                <div id="phone-group">
                     <select id="phone-prefix" name="phone-prefix" required>
+                        <option value="">-- 선택 --</option>
                         <option value="010">010</option>
                         <option value="02">02</option>
                         <option value="032">032</option>
@@ -47,10 +48,8 @@
                         <option value="063">063</option>
                         <option value="070">070</option>
                     </select>
-                    <input type="text" id="phone-middle" name="phone-middle" maxlength="4" pattern="\d{3,4}" required
-                        placeholder="1234">
-                    <input type="text" id="phone-last" name="phone-last" maxlength="4" pattern="\d{4}" required
-                        placeholder="5678">
+                    <input type="text" id="phone-middle" name="phone-middle" maxlength="4" pattern="\\d{3,4}" required placeholder="1234">
+                    <input type="text" id="phone-last" name="phone-last" maxlength="4" pattern="\\d{4}" required placeholder="5678">
                 </div>
             </div>
             <div class="form-group">
@@ -59,10 +58,13 @@
                     <input type="text" id="email-id" name="email-id" required placeholder="example">
                     <span>@</span>
                     <input type="text" id="email-domain-field" name="email-domain-field" placeholder="도메인 입력" readonly>
-                    <select id="email-domain" name="email-domain" onchange="handleEmailDomainChange()">
+                    <select id="email-domain" name="email-domain">
+                        <option value="">-- 선택 --</option>
                         <option value="naver.com">naver.com</option>
                         <option value="google.com">google.com</option>
                         <option value="daum.net">daum.net</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                        <option value="nate.com">nate.com</option>
                         <option value="custom">직접 입력</option>
                     </select>
                 </div>
@@ -70,11 +72,7 @@
             <div class="form-group">
                 <label for="group">그룹</label>
                 <div class="group-group">
-                    <select id="group-dropdown" name="group">
-                        <option value="family">가족</option>
-                        <option value="friends">친구</option>
-                        <option value="work">직장</option>
-                    </select>
+                    <select id="group-dropdown" name="group"></select>
                     <button id="add-group-btn">그룹 추가</button>
                 </div>
             </div>

@@ -1,10 +1,20 @@
 import { auth } from "./auth.js";
-import { sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js"
+import { sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     const resendButton = document.getElementById("resend-email");
     const checkVerificationButton = document.getElementById("check-verification");
-    const currentUser = auth.currentUser;
+    let currentUser = null;
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUser = user;
+        } else {
+            currentUser = null;
+            alert("로그인 후 시도해주세요.");
+            window.location.href = `${window.location.origin}/firebase/auth/login.html`;
+        }
+    })
 
     // 이메일 재전송 버튼
     resendButton.addEventListener("click", async () => {

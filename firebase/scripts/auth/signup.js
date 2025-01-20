@@ -1,7 +1,7 @@
 import { auth } from "./auth.js"
 import {
     getFirestore, collection, query,
-    where, getDocs, doc, setDoc,
+    where, getDocs, doc, setDoc, writeBatch
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import {
     createUserWithEmailAndPassword,
@@ -132,6 +132,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 email: user.email,
                 createdAt: new Date()
             });
+
+            // groups collection 추가
+            const batch = writeBatch(db);
+            const groupsCollection = collection(db, `users/${user.uid}/groups`);
+            const defaultGroups = ["친구", "가족", "직장"];
+
+            for (const group of defaultGroups) {
+                const groupId = group.toLowerCase();
+                batch.set(doc(groupsCollection, groupId), {});
+            }
+            await batch.commit();
 
             await setDoc(doc(db, "usersByEmail", email), {
                 userId: user.uid,
