@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfoManager</title>
-    <script src="scripts/contact-form.js" type="module"></script>
     <link rel="stylesheet" href="styles/contact-form.css">
 </head>
 
@@ -22,12 +21,12 @@
             </div>
             <div class="form-group">
                 <label for="birthdate">생년월일</label>
-                <input type="date" id="birthdate" name="birthdate" required>
+                <input type="date" id="birthdate" name="birthdate">
             </div>
             <div class="form-group">
                 <label for="phone">전화번호</label>
                 <div id="phone-group">
-                    <select id="phone-prefix" name="phone-prefix" required>
+                    <select id="phone-prefix" name="phone-prefix">
                         <option value="">-- 선택 --</option>
                         <option value="010">010</option>
                         <option value="02">02</option>
@@ -48,14 +47,14 @@
                         <option value="063">063</option>
                         <option value="070">070</option>
                     </select>
-                    <input type="text" id="phone-middle" name="phone-middle" maxlength="4" pattern="\\d{3,4}" required placeholder="1234">
-                    <input type="text" id="phone-last" name="phone-last" maxlength="4" pattern="\\d{4}" required placeholder="5678">
+                    <input type="text" id="phone-middle" name="phone-middle" maxlength="4" pattern="\\d{3,4}" placeholder="1234">
+                    <input type="text" id="phone-last" name="phone-last" maxlength="4" pattern="\\d{4}" placeholder="5678">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email">이메일</label>
                 <div class="email-group">
-                    <input type="text" id="email-id" name="email-id" required placeholder="example">
+                    <input type="text" id="email-id" name="email-id" placeholder="example">
                     <span>@</span>
                     <input type="text" id="email-domain-field" name="email-domain-field" placeholder="도메인 입력" readonly>
                     <select id="email-domain" name="email-domain">
@@ -81,11 +80,12 @@
                 <textarea id="notes" name="notes" placeholder="메모를 입력하세요..." rows="4"></textarea>
             </div>
             <div class="save-actions">
-                <button class="save-btn">저장</button>
-                <button class="cancel-btn">취소</button>
+                <button id="save-btn">저장</button>
+                <button id="cancel-btn">취소</button>
             </div>
         </form>
     </main>
+    <script src="scripts/contact-form.js" type="module"></script>
 </body>
 
 </html>

@@ -109,16 +109,16 @@ button {
     transition: all 0.3s ease;
 }
 
-.save-btn, .cancel-btn, #add-group-btn {
+#save-btn, #cancel-btn, #add-group-btn {
     padding: 0.5rem 0.8rem;
 }
 
-.save-btn {
+#save-btn {
     background-color: rgb(114, 155, 230);
     color: white;
 }
 
-.cancel-btn {
+#cancel-btn {
     background-color: red;
     color: white;
 }

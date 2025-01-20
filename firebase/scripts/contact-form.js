@@ -81,6 +81,61 @@ document.addEventListener("DOMContentLoaded", async () => {
             this.style.overflowY = 'hidden';
         }
     });
+
+    // 연락처 추가
+    async function addContact(userId, contactData) {
+        try {
+            // 연락처 collection 생성
+            const contactsCollection = collection(db, `users/${userId}/contacts`);
+            const contactRef = doc(contactsCollection); // ID 생성
+
+            const contactPayload = {
+                name: contactData.name,
+                birthdate: contactData.birthdate || null,
+                phone: contactData.phone || null,
+                email: contactData.email || null,
+                group: contactData.group || null,
+                memo: contactData.memo || null,
+            };
+
+            // Firestore 저장
+            await setDoc(contactRef, contactPayload);
+            alert("연락처 추가 성공");
+            console.log("연락처 추가 성공");
+        } catch (error) {
+            console.error("연락처 추가 오류:", error.message);
+        }
+    }
+
+    // 저장 버튼
+    document.getElementById('save-btn').addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const birthdate = document.getElementById('birthdate').value || null;
+        const phone = document.getElementById('phone-prefix').value && document.getElementById('phone-middle').value && document.getElementById('phone-last').value
+            ? `${document.getElementById('phone-prefix').value}-${document.getElementById('phone-middle').value}-${document.getElementById('phone-last').value}`
+            : null;
+        const email = document.getElementById('email-id').value && document.getElementById('email-domain-field').value
+            ? `${document.getElementById('email-id').value}@${document.getElementById('email-domain-field').value}`
+            : null;
+        const group = document.getElementById('group-dropdown').value || null;
+        const memo = document.getElementById('notes').value || null;
+
+        if (!name.trim()) {
+            alert("이름은 필수 항목입니다!");
+            return;
+        }
+
+        await addContact(userId, { name, birthdate, phone, email, group, memo });
+        window.location.href = `${window.location.origin}/firebase/home.html`;
+    })
+
+    // 취소 버튼
+    document.getElementById('cancel-btn').addEventListener('click', async (e) => {
+        e.preventDefault();
+        window.location.href = `${window.location.origin}/firebase/home.html`;
+    })
 });
 
 // 이메일 도메인 바꾸기
@@ -94,6 +149,7 @@ function handleEmailDomainChange() {
         domainField.readOnly = false;
         domainField.style.backgroundColor = '#ffffff';
     } else if (dropdown.value === '') {
+        // 선택하지 않았을 시
         domainField.value = '';
         domainField.readOnly = true;
         domainField.style.backgroundColor = '#f0f0f0';
