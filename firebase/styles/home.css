@@ -16,12 +16,18 @@ body {
 }
 
 #add-contact-btn {
-    border: 1px solid black;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 0.5rem;
-    background-color: white;
-    
+    padding: 0.4rem 0.6rem;
+    font-size: 14px;
+    background-color: #4caf50;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+#add-contact-btn:hover {
+    background-color: #2bbb30;
 }
 
 #contact-list, #contact-header {
