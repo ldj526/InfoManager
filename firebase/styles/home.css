@@ -42,6 +42,12 @@ body {
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid #dadada;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-item:hover {
+    background-color: #f0f8ff;
 }
 
 .contact-actions {

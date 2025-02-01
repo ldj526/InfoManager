@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? `${document.getElementById('email-id').value}@${document.getElementById('email-domain-field').value}`
             : null;
         const group = document.getElementById('group-dropdown').value || null;
-        const memo = document.getElementById('notes').value || null;
+        const memo = document.getElementById('notes').value.replace(/\r?\n/g, "\\n") || null;
 
         if (!name.trim()) {
             alert("이름은 필수 항목입니다!");

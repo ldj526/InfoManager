@@ -45,11 +45,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <button class="delete-btn">삭제</button>
                     </div>
                 `;
+
+                contactItem.addEventListener("click", () => {
+                    window.location.href = `contact-detail.html?contactId=${doc.id}`;
+                });
+
                 contactList.appendChild(contactItem);
 
                 // 삭제 버튼
                 const deleteBtn = contactList.querySelector('.delete-btn');
-                deleteBtn.addEventListener('click', () => {
+                deleteBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();    // 부모 클릭 이벤트 방지
                     handleDeleteContact(userId, doc.id, data.name);
                 });
 

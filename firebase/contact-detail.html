@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연락처 상세 정보</title>
+    <link rel="stylesheet" href="styles/contact-detail.css">
+</head>
+
+<body>
+    <header>
+        <h1>연락처 상세 정보</h1>
+        <button id="back-btn">뒤로가기</button>
+    </header>
+    <main>
+        <div class="contact-details">
+            <div class="contact-field">
+                <label>이름</label>
+                <div id="contact-name" class="contact-box"></div>
+            </div>
+            <div class="contact-field">
+                <label>생년월일</label>
+                <div id="contact-birthdate" class="contact-box"></div>
+            </div>
+            <div class="contact-field">
+                <label>전화번호</label>
+                <div id="contact-phone" class="contact-box"></div>
+            </div>
+            <div class="contact-field">
+                <label>이메일</label>
+                <div id="contact-email" class="contact-box"></div>
+            </div>
+            <div class="contact-field">
+                <label>그룹</label>
+                <div id="contact-group" class="contact-box"></div>
+            </div>
+            <div class="contact-field">
+                <label>메모</label>
+                <div id="contact-memo" class="contact-box"></div>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="edit-btn">수정</button>
+            <button id="delete-btn">삭제</button>
+        </div>
+    </main>
+
+    <script src="scripts/contact-detail.js" type="module"></script>
+</body>
+
+</html>
