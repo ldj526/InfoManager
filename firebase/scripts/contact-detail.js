@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 수정 버튼
     document.getElementById("edit-btn").addEventListener("click", () => {
-        
+        window.location.href = `contact-form.html?contactId=${contactId}`;
     });
 
     // 삭제 버튼

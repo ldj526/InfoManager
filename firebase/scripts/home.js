@@ -46,20 +46,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `;
 
+                // 상세 페이지로 이동
                 contactItem.addEventListener("click", () => {
                     window.location.href = `contact-detail.html?contactId=${doc.id}`;
                 });
 
-                contactList.appendChild(contactItem);
-
                 // 삭제 버튼
-                const deleteBtn = contactList.querySelector('.delete-btn');
+                const deleteBtn = contactItem.querySelector('.delete-btn');
                 deleteBtn.addEventListener('click', (event) => {
                     event.stopPropagation();    // 부모 클릭 이벤트 방지
                     handleDeleteContact(userId, doc.id, data.name);
                 });
 
-                /* TODO: 수정버튼 눌렀을 시 로직 */
+                // 수정 버튼
+                const editBtn = contactItem.querySelector('.edit-btn');
+                editBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    window.location.href = `contact-form.html?contactId=${doc.id}`;
+                });
+
+                contactList.appendChild(contactItem);
             });
         } catch (error) {
             console.error("연락처를 가져오는 중 오류 발생:", error.message);

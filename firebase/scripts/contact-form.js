@@ -1,5 +1,5 @@
 import { auth } from "./auth/auth.js";
-import { getFirestore, collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, doc, setDoc, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js"
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const addGroupButton = document.getElementById('add-group-btn');
     const emailDropdown = document.getElementById('email-domain');
     emailDropdown.addEventListener('change', handleEmailDomainChange);
+    let contactId = new URLSearchParams(window.location.search).get("contactId");
     let userId = null;
 
     // Firebase 인증 초기화
@@ -15,6 +16,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (user) {
             userId = user.uid; // 인증된 사용자 ID
             await loadGroup();
+            if (contactId) {
+                console.log("Editing contact:", contactId);
+                document.getElementById("form-title").textContent = "연락처 수정";
+                await loadContactData(userId, contactId);
+            }
         } else {
             alert("로그인이 필요합니다.");
             window.location.href = "login.html"; // 로그인 페이지로 리다이렉트
@@ -36,6 +42,30 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         } catch (error) {
             console.error("그룹 로드 실패:", error.message);
+        }
+    }
+
+    // Firestore에서 연락처 정보 가져오기
+    async function loadContactData(userId, contactId) {
+        try {
+            const contactRef = doc(db, `users/${userId}/contacts/${contactId}`);
+            const contactSnap = await getDoc(contactRef);
+
+            if (contactSnap.exists()) {
+                const data = contactSnap.data();
+                document.getElementById("name").value = data.name || "";
+                document.getElementById("birthdate").value = data.birthdate || "";
+                document.getElementById("phone-prefix").value = data.phone?.split("-")[0] || "";
+                document.getElementById("phone-middle").value = data.phone?.split("-")[1] || "";
+                document.getElementById("phone-last").value = data.phone?.split("-")[2] || "";
+                document.getElementById("email-id").value = data.email?.split("@")[0] || "";
+                document.getElementById("email-domain-field").value = data.email?.split("@")[1] || "";
+                document.getElementById("group-dropdown").value = data.group || "";
+                document.getElementById("notes").value = data.memo ? data.memo.replace(/\\n/g, "\n") : "";
+            }
+        } catch (error) {
+            console.error("연락처 불러오기 오류:", error.message);
+            alert("연락처 정보를 불러오는 중 오류가 발생했습니다.");
         }
     }
 
