@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         } else {
             alert("로그인이 필요합니다.");
-            window.location.href = "login.html"; // 로그인 페이지로 리다이렉트
+            window.location.href = "/auth/login.html"; // 로그인 페이지로 리다이렉트
         }
     });
 
@@ -158,13 +158,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         await addContact(userId, { name, birthdate, phone, email, group, memo });
-        window.location.href = `${window.location.origin}/firebase/home.html`;
+        window.location.href = `${window.location.origin}/home.html`;
     })
 
     // 취소 버튼
     document.getElementById('cancel-btn').addEventListener('click', async (e) => {
         e.preventDefault();
-        window.location.href = `${window.location.origin}/firebase/home.html`;
+        window.location.href = `${window.location.origin}/home.html`;
     })
 });
 

@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             alert("회원가입이 완료되었습니다. 이메일 인증 후 로그인하세요.");
-            window.location.href = "login.html";
+            window.location.href = "/auth/login.html";
         } catch (error) {
             console.error("회원가입 중 오류:", error.message);
             alert("회원가입 중 오류가 발생했습니다.");

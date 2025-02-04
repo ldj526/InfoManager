@@ -1,5 +1,5 @@
 import { auth } from "./auth/auth.js";
-import { loadDialog, showDialog } from "../components/dialog.js";
+import { loadDialog, showDialog } from "/components/dialog.js";
 import { getFirestore, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         } else {
             alert("로그인이 필요합니다.");
-            window.location.href = "login.html";
+            window.location.href = "/auth/login.html";
         }
     });
 

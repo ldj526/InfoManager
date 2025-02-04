@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (user.emailVerified) {
                 alert("로그인 성공!");
-                window.location.href = `${window.location.origin}/firebase/home.html`;
+                window.location.href = `${window.location.origin}/home.html`;
             } else {
                 alert("이메일이 인증되지 않았습니다. 인증 페이지로 이동합니다");
                 window.location.href = "verify.html";

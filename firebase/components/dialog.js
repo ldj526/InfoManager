@@ -13,14 +13,14 @@ export async function loadDialog() {
 
     try {
         // Dialog HTML 동적로드
-        const response = await fetch(`${window.location.origin}/firebase/components/dialog.html`);
+        const response = await fetch(`${window.location.origin}/components/dialog.html`);
         const dialogHTML = await response.text();
         document.body.insertAdjacentHTML('beforeend', dialogHTML);
 
         // Dialog CSS 동적로드
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = `${window.location.origin}/firebase/components/dialog.css`;
+        link.href = `${window.location.origin}/components/dialog.css`;
         document.head.appendChild(link);
 
         // Dialog 초기 숨김 처리

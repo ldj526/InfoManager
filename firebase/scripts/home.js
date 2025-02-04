@@ -1,5 +1,5 @@
 import { auth } from "./auth/auth.js";
-import { loadDialog, showDialog } from "../components/dialog.js";
+import { loadDialog, showDialog } from "/components/dialog.js";
 import { getFirestore, collection, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await fetchContacts(userId);
         } else {
             alert("로그인이 필요합니다.");
-            window.location.href = "login.html";
+            window.location.href = "/auth/login.html";
         }
     });
 
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// 클릭 시 contact-form.html로 이동동
+// 클릭 시 contact-form.html로 이동
 document.getElementById('add-contact-btn').addEventListener('click', () => {
     window.location.href = 'contact-form.html';
 });
